@@ -7,22 +7,20 @@
     <!-- 内容 -->
    <div>
      <!-- 分类 -->
-     <van-grid :column-num="3">
+    <van-grid :column-num="3">
     <van-grid-item
     v-for="value in categories"
     :key="value.id"
     :icon="value.icon"
     :text="value.name"
   />
-</van-grid>
- <van-grid :column-num="1" icon-size="400px">
-    <van-grid-item
-    v-for="value in products"
-    :key="value.id"
-    :icon="value.photo"
-    :text="value.name"
-  />
-</van-grid>
+    </van-grid>
+    <briup-product-item 
+      @click="toBuyHandler(p)"
+      v-for="p in products" 
+      :key="p.id" 
+      :data="p">
+    </briup-product-item> 
    </div>
   </div>
 </template>
@@ -42,6 +40,14 @@ export default {
     this.loadProducts();
   },
   methods:{
+     toBuyHandler(p){
+      //  跳转到确认订单页面，并携带数据p
+        this.$router.push({
+        path:"/manager/order_confirm",
+        query:p
+      })
+
+    },
     //加载栏目信息
     loadCategories(){
       let url="/category/findAll";
@@ -59,10 +65,8 @@ export default {
       }
       post(url,params).then((response)=>{
         this.products=response.data.list;
-
       })
     }
-
   }
 }
 </script>

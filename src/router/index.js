@@ -12,6 +12,7 @@ import { Toast } from 'vant'
 import store from '../store'
 import AddressList from '../views/manager/address/List'
 import AddressEdit from '../views/manager/address/Edit'
+import OrderConfirm from '../views/manager/order/Confirm'
 
 
 Vue.use(VueRouter)
@@ -55,6 +56,9 @@ const routes = [
     },{
       path: 'address_edit',
       component: AddressEdit,
+    },{
+      path: 'order_confirm',
+      component: OrderConfirm,
     }
   ]
   },
